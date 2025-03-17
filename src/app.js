@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 const config = require('./config'); // config faylni import qilamiz
 const JvPaymentAPIClient = require('./jvspinbetpay');
 const ProPaymentAPIClient = require('./1probet-pay');
+const adminusername = config.ADMIN.ADMIN_USERNAME;
+
+
 
 
 // MongoDB Connection
@@ -832,7 +835,7 @@ bot.hears('📨 Hammaga Xabar', async (ctx) => {
 });
 
 // Main Menu Handlers
-bot.hears('💳 Hisob To\'ldirish', async (ctx) => {
+bot.hears('📥 Hisobni To\'ldirish', async (ctx) => {
     if (!ctx.from) return;
     const user = await User.findOne({ telegramId: ctx.from.id });
         if (!user || !user.phone) {
@@ -843,7 +846,7 @@ bot.hears('💳 Hisob To\'ldirish', async (ctx) => {
     await ctx.reply('Kerakli bukmekerni tanlang:', platformButtons);
 });
 
-bot.hears('💰 Pul yechish', async (ctx) => {
+bot.hears('📥 Hisobdan yechish', async (ctx) => {
     if (!ctx.from) return;
     const user = await User.findOne({ telegramId: ctx.from.id });
         if (!user || !user.phone) {
@@ -854,9 +857,9 @@ bot.hears('💰 Pul yechish', async (ctx) => {
     await ctx.reply('Platformani tanlang:', platformButtons);
 });
 
-bot.hears('☎️ Aloqa', async (ctx) => {
+bot.hears('👨‍💻 Admin', async (ctx) => {
     if (!ctx.from) return;
-    await ctx.reply('Admin bilan bog\'lanish: @bahodirMobcash', backKeyboard);
+    await ctx.reply(`Biz bilan bog'lanish uchun quyidagi tugmani bosing, iltimos savolingizni bitta xabar bilan yuborib javobni kuting. ${adminusername}`, backKeyboard);
 });
 
 bot.hears('🗃 Qo\'llanma', async (ctx) => {

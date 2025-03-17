@@ -28,6 +28,9 @@ const config = {
     DATABASE: {
         URI: process.env.MONGO_URI,
     },
+    ADMIN: {
+        ADMIN_USERNAME: process.env.ADMIN_USRNAME,
+    },
     LIMIT: {
         LIMIT: Number(process.env.LIMIT),
     },
