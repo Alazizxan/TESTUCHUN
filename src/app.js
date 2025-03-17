@@ -104,8 +104,8 @@ const backKeyboard = Markup.keyboard([
 
 const platformButtons = Markup.inlineKeyboard([
     [Markup.button.callback('SpinBetter', 'platform_spinbetter')],
-    [Markup.button.callback('Pro1Bet', 'platform_probet')],
-    [Markup.button.callback('JVSPINBET', 'platform_JVSPINBET')]
+    [Markup.button.callback('Win Win', 'platform_probet')],
+    [Markup.button.callback('Melbet', 'platform_JVSPINBET')]
 ]).resize();
 
 // Helper Functions
@@ -915,25 +915,25 @@ bot.action(/platform_(.+)/, async (ctx) => {
         }else if (userState.state === 'WITHDRAWAL_TYPE' && platform === 'probet') {
             setState(ctx.from.id, 'PRO_WAITING_ID', { ...userState.data, platform });
             await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/3', {
-                caption: 'ID raqamingizni kiriting!\n 💳 PRO1BET UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!',
+                caption: 'ID raqamingizni kiriting!\n 💳 Win Win UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!',
                 reply_markup: backKeyboard
               });
         } else if (userState.state === 'PAYOUT_TYPE' && platform === 'probet') {
             setState(ctx.from.id, 'PRO_PAYOUT_WAITING_ID', { ...userState.data, platform });
             await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/3', {
-                caption: 'ID raqamingizni kiriting!\n 💳 PRO1BET UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!\n( Manzil : Qarshi SimplePay (24/7))',
+                caption: 'ID raqamingizni kiriting!\n 💳 win win UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!\n( Manzil : Qarshi SimplePay (24/7))',
                 reply_markup: backKeyboard
               });
     }else if (userState.state === 'WITHDRAWAL_TYPE' && platform === 'JVSPINBET') {
         setState(ctx.from.id, 'JV_WAITING_ID', { ...userState.data, platform });
         await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/3', {
-            caption: 'ID raqamingizni kiriting!\n 💳 JVSPINBET UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!',
+            caption: 'ID raqamingizni kiriting!\n 💳 Melbet UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!',
             reply_markup: backKeyboard
           });
     } else if (userState.state === 'PAYOUT_TYPE' && platform === 'JVSPINBET') {
         setState(ctx.from.id, 'JV_PAYOUT_WAITING_ID', { ...userState.data, platform });
         await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/3', {
-            caption: 'ID raqamingizni kiriting!\n 💳 JVSPINBET UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!\n( Manzil : Qarshi SimplePay (24/7))',
+            caption: 'ID raqamingizni kiriting!\n 💳 Melbet UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!\n( Manzil : Qarshi SimplePay (24/7))',
             reply_markup: backKeyboard
           });
     } else {
