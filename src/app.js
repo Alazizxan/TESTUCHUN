@@ -64,8 +64,8 @@ const transactions = new Map();
 
 // Keyboard Layouts
 const mainKeyboard = Markup.keyboard([
-    ['💳 Hisob To\'ldirish', '💰 Pul yechish'],
-    ['☎️ Aloqa', '🗃 Qo\'llanma'],
+    ['📥 Hisobni To\'ldirish', '📤 Hisobdan yechish'],
+    ['👨‍💻 Admin', '🗃 Qo\'llanma'],
     ['🔗 Referal'],
 ]).resize();
 
