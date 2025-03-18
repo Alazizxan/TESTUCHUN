@@ -31,6 +31,15 @@ const config = {
     ADMIN: {
         ADMIN_USERNAME: process.env.ADMIN_USRNAME,
     },
+    IMAGE: {
+        IMAGE_DEPOSIT: process.env.IMAGE_DEPOSIT,
+    },
+    MANZIL: {
+        
+            MANZIL_WIN: process.env.MANZIL_WIN,
+            MANZIL_MEL: process.env.MANZIL_MEL,
+            MANZIL_SPIN: process.env.MANZIL_SPIN,
+        },
     LIMIT: {
         LIMIT: Number(process.env.LIMIT),
     },

