@@ -847,7 +847,7 @@ bot.hears('📥 Hisobni To\'ldirish', async (ctx) => {
     await ctx.reply('Kerakli bukmekerni tanlang:', platformButtons);
 });
 
-bot.hears('📥 Hisobdan yechish', async (ctx) => {
+bot.hears('📤 Hisobdan yechish', async (ctx) => {
     if (!ctx.from) return;
     const user = await User.findOne({ telegramId: ctx.from.id });
         if (!user || !user.phone) {
