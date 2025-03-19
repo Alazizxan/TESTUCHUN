@@ -33,6 +33,7 @@ const config = {
     },
     IMAGE: {
         IMAGE_DEPOSIT: process.env.IMAGE_DEPOSIT,
+        IMAGE_CARD: process.env.IMAGE_CARD,
     },
     MANZIL: {
         

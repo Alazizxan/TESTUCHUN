@@ -7,6 +7,7 @@ const JvPaymentAPIClient = require('./jvspinbetpay');
 const ProPaymentAPIClient = require('./1probet-pay');
 const adminusername = config.ADMIN.ADMIN_USERNAME;
 const IMAGE_DEPOSIT = config.IMAGE.IMAGE_DEPOSIT;
+const IMAGE_CARD = config.IMAGE.IMAGE_CARD;
 
 
 
@@ -1116,7 +1117,7 @@ bot.on('text', async (ctx) => {
                 }
 
                 setState(userId, 'WAITING_CARD', { ...userState.data, amount: text });
-                await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/2', {
+                await ctx.telegram.sendPhoto(ctx.chat.id, IMAGE_CARD, {
                     caption: 'ℹ️ Karta raqamingizni kiriting\n 💳 Uzcard/Xumo raqami namunasi yuqoridagi suratta ko\'rsatilgan!',
                     reply_markup: backKeyboard
                   });
@@ -1176,7 +1177,7 @@ bot.on('text', async (ctx) => {
                 }
         
                 setState(userId, 'WAITING_CARD', { ...userState.data, amount: text });
-                await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/2', {
+                await ctx.telegram.sendPhoto(ctx.chat.id, IMAGE_CARD, {
                     caption: 'ℹ️ Karta raqamingizni kiriting\n 💳 Uzcard/Xumo raqami namunasi yuqoridagi suratta ko\'rsatilgan!',
                     reply_markup: backKeyboard
                   });
@@ -1235,7 +1236,7 @@ bot.on('text', async (ctx) => {
                 }
         
                 setState(userId, 'WAITING_CARD', { ...userState.data, amount: text });
-                await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/2', {
+                await ctx.telegram.sendPhoto(ctx.chat.id, IMAGE_CARD, {
                     caption: 'ℹ️ Karta raqamingizni kiriting\n 💳 Uzcard/Xumo raqami namunasi yuqoridagi suratta ko\'rsatilgan!',
                     reply_markup: backKeyboard
                   });
@@ -1497,7 +1498,7 @@ bot.on('text', async (ctx) => {
 
                 case 'PAYOUT_WAITING_CODE':
                     setState(userId, 'PAYOUT_WAITING_CARD', { ...userState.data, code: text });
-                    await ctx.telegram.sendPhoto(ctx.chat.id, 'https://t.me/simplepay_uz/2', {
+                    await ctx.telegram.sendPhoto(ctx.chat.id, IMAGE_CARD, {
                         caption: 'ℹ️ Karta raqamingizni kiriting\n 💳 Uzcard/Xumo raqami namunasi yuqoridagi suratta ko\'rsatilgan!',
                         reply_markup: backKeyboard
                       });
