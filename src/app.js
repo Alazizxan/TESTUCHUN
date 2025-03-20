@@ -893,9 +893,9 @@ bot.hears('🗃 Qo\'llanma', async (ctx) => {
 7. Ma'lumotlarni tasdiqlang
 
 ❗️Muammo bo'lsa: @bahodirMobcash`;
-    await ctx.telegram.sendVideo(ctx.chat.id, 'https://t.me/simplepay_uz/5', {
-        caption: 'Qo\'llanma pul yechish uchun Spinbetter\n manzil: Qarshi, LT Textile (24/7)\n Pul yechish avto Bot 24/7 xizmat ko\'rsatadi',});
-    await ctx.telegram.sendVideo(ctx.chat.id, 'https://t.me/simplepay_uz/4', {
+    await ctx.telegram.sendVideo(ctx.chat.id, 'https://t.me/tzakbarov2025/5', {
+        caption: `Qo\'llanma pul yechish uchun Spinbetter\n manzil: ${config.MANZIL.MANZIL_SPIN}\n Pul yechish avto Bot 24/7 xizmat ko\'rsatadi`,});
+    await ctx.telegram.sendVideo(ctx.chat.id, 'https://t.me/tzakbarov2025/4', {
         caption: 'Qo\'llanma Hisob to\'ldirish uchun!\n Hisob to\'ldirish avto Bot 24/7 xizmat ko\'rsatadi',});
     await ctx.reply(manual, mainKeyboard);
 });
@@ -1106,7 +1106,8 @@ bot.on('text', async (ctx) => {
 💵 <b>Currency ID:</b> ${gamer_data.CurrencyId}
 `;
                     await ctx.reply(message, { parse_mode: 'HTML' });
-                    await ctx.reply('Summani kiriting (min-10,000uzs):', backKeyboard);
+                    const alert_limit = config.LIMIT.LIMIT + 1000;
+                    await ctx.reply(`Summani kiriting (min-${alert_limit} uzs):`, backKeyboard);
                 } catch (error) {
                     throw error;
                 }
@@ -1118,7 +1119,7 @@ bot.on('text', async (ctx) => {
                 const amount = parseFloat(text);
                 const balance = response; 
                 if (isNaN(text) || parseFloat(text) <= limit) {
-                    throw new Error('Noto\'g\'ri summa minimal 10ming so\'m');
+                    throw new Error(`Noto\'g\'ri summa minimal ${limit} so\'m`);
                 }
 
                 if (balance.Balance === -1) {
