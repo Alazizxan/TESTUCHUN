@@ -339,12 +339,11 @@ const notifyAdmins = async (message, errorLevel = 'info') => {
 
     const formattedMessage = `${emoji[errorLevel]} ${message}`;
 
-    for (const adminId of ADMIN_IDS) {
-        try {
-            await bot.telegram.sendMessage(adminId, formattedMessage);
-        } catch (error) {
-            console.error(`Failed to notify admin ${adminId}:`, error);
-        }
+    try {
+        await bot.telegram.sendMessage(ADMIN_ID, formattedMessage);
+        console.log(`Xabar muvaffaqiyatli yuborildi: ${ADMIN_ID}`);
+    } catch (error) {
+        console.error(`Failed to notify admin ${ADMIN_ID}:`, error);
     }
 };
 
@@ -1119,7 +1118,9 @@ bot.on('text', async (ctx) => {
                 const amount = parseFloat(text);
                 const balance = response; 
                 if (isNaN(text) || parseFloat(text) <= limit) {
-                    throw new Error(`Noto\'g\'ri summa minimal ${limit} so\'m`);
+                    const alrtlmt= config.LIMIT.LIMIT + 1000;
+                    throw new Error(`Noto\'g\'ri summa minimal ${alrtlmt} so\'m`);
+                    
                 }
 
                 if (balance.Balance === -1) {
