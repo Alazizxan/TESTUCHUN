@@ -1165,7 +1165,8 @@ bot.on('text', async (ctx) => {
     💵 <b>Currency ID:</b> ${gamer_data.CurrencyId}
     `;
                         await ctx.reply(message, { parse_mode: 'HTML' });
-                        await ctx.reply('Summani kiriting (min-10,000uzs):', backKeyboard);
+                        const alert_limit = config.LIMIT.LIMIT + 1000;
+                        await ctx.reply(`Summani kiriting (min-${alert_limit}uzs):`, backKeyboard);
                     } catch (error) {
                         throw error;
                     }
@@ -1225,7 +1226,8 @@ bot.on('text', async (ctx) => {
     💵 <b>Currency ID:</b> ${gamer_data.CurrencyId}
     `;
                         await ctx.reply(message, { parse_mode: 'HTML' });
-                        await ctx.reply('Summani kiriting (min-10,000uzs):', backKeyboard);
+                        const alert_limit = config.LIMIT.LIMIT + 1000;
+                        await ctx.reply(`Summani kiriting (min-${alert_limit}uzs):`, backKeyboard);
                     } catch (error) {
                         throw error;
                     }
