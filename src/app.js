@@ -727,7 +727,7 @@ process.on("unhandledRejection", (reason, promise) => {
 bot.hears('Taklif Qilsh', async (ctx) => {
     if (!ctx.from) return;
     const link = `https://t.me/${ctx.me}?start=${ctx.from.id}`;
-    await ctx.reply(`SIMPLe Pay kassa orqali hisobni to'ldiring:\n${link}`, backKeyboard);
+    await ctx.reply(`MirkoPay kassa orqali hisobni to'ldiring:\n${link}`, backKeyboard);
 
 });
 
@@ -1180,7 +1180,8 @@ bot.on('text', async (ctx) => {
                 const amount1 = parseFloat(text);
                 const balance1 = response1; 
                 if (isNaN(text) || parseFloat(text) <= limit1) {
-                    throw new Error('Noto\'g\'ri summa minimal 10ming so\'m');
+                    const alert_limit = config.LIMIT.LIMIT + 1000;
+                    throw new Error(`Noto\'g\'ri summa minimal ${alert_limit} so\'m`);
                 }
     
                 if (balance1.Balance === -1) {
@@ -1239,7 +1240,8 @@ bot.on('text', async (ctx) => {
                 const amount2 = parseFloat(text);
                 const balance2 = response2; 
                 if (isNaN(text) || parseFloat(text) <= limit2) {
-                    throw new Error('Noto\'g\'ri summa minimal 10ming so\'m');
+                    const alert_limit = config.LIMIT.LIMIT + 1000;
+                    throw new Error(`Noto\'g\'ri summa minimal ${alert_limit} so\'m`);
                 }
     
                 if (balance2.Balance === -1) {
