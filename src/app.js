@@ -889,9 +889,7 @@ bot.hears('🗃 Qo\'llanma', async (ctx) => {
 4. Kassa Manzilni tanlang
 5. Kodni oling va kiriting
 6. Karta raqamini kiriting
-7. Ma'lumotlarni tasdiqlang
-
-❗️Muammo bo'lsa: @bahodirMobcash`;
+7. Ma'lumotlarni tasdiqlang`;
     await ctx.telegram.sendVideo(ctx.chat.id, 'https://t.me/tzakbarov2025/5', {
         caption: `Qo\'llanma pul yechish uchun Spinbetter\n manzil: ${config.MANZIL.MANZIL_SPIN}\n Pul yechish avto Bot 24/7 xizmat ko\'rsatadi`,});
     await ctx.telegram.sendVideo(ctx.chat.id, 'https://t.me/tzakbarov2025/4', {
